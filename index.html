@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TP - Seguimiento de Paquetes</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        header { display:flex; gap:10px; align-items:center; }
+        main { margin-top:20px; }
+        .pantalla { border:1px solid #ddd; padding:16px; border-radius:6px; margin-bottom:12px; }
+        .hidden { display:none; }
+        button { padding:8px 12px; cursor:pointer; }
+        input, select { padding:6px; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>TP: Seguimiento de Paquetes</h1>
+      <nav>
+        <button id="btn-mail">Pantalla Correo</button>
+        <button id="btn-client">Pantalla Cliente</button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="screen-mail" class="pantalla">
+        <h2>Panel de Correo</h2>
+        <form id="form-add-package">
+          <label>
+            N° de guía:
+            <input type="text" id="input-tracking" placeholder="Ej: AA123456789AR" required />
+          </label>
+          <button type="submit">Crear/Seleccionar guía</button>
+        </form>
+
+        <div id="mail-controls" class="hidden">
+          <p>Guía seleccionada: <strong id="selected-tracking">-</strong></p>
+
+          <label>
+            Sucursal:
+            <select id="select-branch">
+              <option value="">Seleccionar sucursal</option>
+              <option value="Sucursal Central">Sucursal Central</option>
+              <option value="Sucursal Norte">Sucursal Norte</option>
+              <option value="Sucursal Sur">Sucursal Sur</option>
+              <option value="Sucursal Oeste">Sucursal Oeste</option>
+            </select>
+          </label>
+
+          <label>
+            Movimiento:
+            <select id="select-movement">
+              <option value="">Seleccionar movimiento</option>
+              <option value="Recibido en sucursal">Recibido en sucursal</option>
+              <option value="En tránsito">En tránsito</option>
+              <option value="En reparto">En reparto</option>
+              <option value="Entregado">Entregado</option>
+            </select>
+          </label>
+
+          <button id="btn-add-movement">Agregar movimiento</button>
+        </div>
+
+        <h3>Últimas guías</h3>
+        <ul id="list-packages"></ul>
+      </section>
+
+      <section id="screen-client" class="pantalla hidden">
+        <h2>Consulta Cliente</h2>
+        <form id="form-track-query">
+          <label>
+            N° de guía:
+            <input type="text" id="input-query" placeholder="Ingresa N° de guía" required />
+          </label>
+          <button type="submit">Buscar</button>
+        </form>
+
+        <div id="query-result" class="hidden">
+          <h3>Estado de la guía: <span id="query-status">-</span></h3>
+          <h4>Movimientos</h4>
+          <ul id="query-movements"></ul>
+        </div>
+      </section>
+    </main>
+
+    <script src="main.js"></script>
+  </body>
+</html>
